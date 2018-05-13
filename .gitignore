@@ -1,2 +1,4 @@
 node_modules
 .env
+incoming.log
+transactions.log
