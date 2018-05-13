@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.post('*', function(req, res) {
     logger.info('info', req.body);
+    res.send('acknowledged');
 });
 
 app.listen(PORT, (req, res) => {
