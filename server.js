@@ -8,7 +8,7 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 var API_URL = process.env.API_URL;
 
-logger.add('file', {filename: 'incoming.log'});
+logger.add('file', {filename: __dirname + '/incoming.log'});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
