@@ -1,6 +1,7 @@
 require('dotenv').config({path: __dirname + '/.env'});
 var express = require('express');
 var bodyParser = require('body-parser');
+var axios = require('axios');
 var winston = require('winston');
 var logger = require('./lib/logger');
 var app = express();
@@ -15,6 +16,14 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.post('*', function(req, res) {
     logger.info('info', req.body);
+    axios
+        .post(API_URL+'/temperatures', req.body)
+        .then(response => {
+            console.log('status:', response.status);
+            console.log('data:', response.data);
+        })
+        .catch(err => console.error('error:', error));
+
     res.send('acknowledged');
 });
 
