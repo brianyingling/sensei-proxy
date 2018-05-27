@@ -11,6 +11,10 @@ var API_URL = process.env.API_URL;
 
 logger.add('file', {filename: __dirname + '/incoming.log'});
 
+process.on('uncaughtException', function (err) {
+    console.log(err);
+}); 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -22,7 +26,7 @@ app.post('*', function(req, res) {
             console.log('status:', response.status);
             console.log('data:', response.data);
         })
-        .catch(err => console.error('error:', error));
+        .catch(err => console.error('error:', err));
 
     res.send('acknowledged');
 });
